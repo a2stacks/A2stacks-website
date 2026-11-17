@@ -22,9 +22,14 @@ This repository contains the ultra-luxurious, high-performance web experience fo
 
 ---
 
-## ✦ Flagship Case Study
+## ✦ Flagship Case Studies & Proven Deployments
 
-- **CADLAB** ([cadlab.co.in](https://cadlab.co.in)): Business website architecture, brand positioning, and responsive UI engineering.
+- **CADLAB** ([cadlab.co.in](https://cadlab.co.in)) — *2026 – PRESENT*: Business website architecture, brand positioning, and sub-second responsive UI engineering.
+- **NyayaVakil (न्यायवकील)** ([nyayavakil-legal-copilot.vercel.app](https://nyayavakil-legal-copilot.vercel.app/)): Specialized Applied AI legal co-pilot analyzing criminal FIRs across the new Bharatiya Nyaya Sanhita (BNS) and IPC dual legal regimes. Engineered by Ananta Kishore Swain.
+- **Creative Techno College — Staff Management System (SMS)** ([creativecollege.in/SMS/index.html](https://creativecollege.in/SMS/index.html)): Internal enterprise faculty & administration ERP portal for duty scheduling and departmental records. Engineered by Asutosh Sahu.
+- **Creative Student Zone Application**: Native Android mobile companion app published on the Google Play Store for Creative Techno College academic notices and student tracking. Engineered by Asutosh Sahu.
+- **AI Academic Success Tracker & NeuroTrace AI** ([GitHub Repository](https://github.com/ananta12-d/AI-Academic-Success-Tracker) | [NeuroTraceAI](https://github.com/ananta12-d/NeuroTraceAI-Dev)): XGBoost machine learning retention risk engine with Google Gemini AI action plans, SHAP explainability, and deep neural diagnostic research. Engineered by Ananta Kishore Swain.
+- **Ananta's AI & MLOps Portfolio** ([ananta-portfolio-beta.vercel.app](https://ananta-portfolio-beta.vercel.app/)): Applied AI, MLOps, and scalable backend architecture portfolio.
 
 ---
 
@@ -53,8 +58,10 @@ This repository contains the ultra-luxurious, high-performance web experience fo
 - **Asutosh Sahu** — Co-Founder & Lead Engineer (Full-Stack Architecture, Business Software, Web Systems)
   - LinkedIn: [Asutosh Sahu](https://www.linkedin.com/in/asutosh-sahu-b3219426b/)
   - GitHub: [@Asutosh-0](https://github.com/Asutosh-0/)
+  - Institutional Systems: [Creative Techno College SMS](https://creativecollege.in/SMS/index.html)
 
 - **Ananta Kishore Swain** — Co-Founder & Systems Architect (Systems Engineering, AI Workflows, Delivery Strategy)
+  - Portfolio: [Ananta's AI Portfolio](https://ananta-portfolio-beta.vercel.app/)
   - LinkedIn: [Ananta Kishore Swain](https://www.linkedin.com/in/ananta-kishore-swain-6282472bb/)
   - GitHub: [@ananta12-d](https://github.com/ananta12-d)
 

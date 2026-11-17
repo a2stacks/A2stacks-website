@@ -2709,16 +2709,44 @@ ul {
 
 .pipeline-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
 }
 
 .pipeline-card {
-  padding: 24px;
+  padding: 28px;
   background: rgba(12, 22, 38, 0.7);
-  border-radius: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pipeline-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(217, 181, 109, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.pipeline-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.pipeline-author-tag {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--gold-light);
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .pipeline-status-badge {
@@ -2731,20 +2759,145 @@ ul {
   color: var(--cyan-soft);
   display: inline-block;
   border-radius: 3px;
-  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.pipeline-status-badge.badge-emerald {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #34d399;
+}
+
+.pipeline-status-badge.badge-sapphire {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: #60a5fa;
+}
+
+.pipeline-status-badge.badge-gold {
+  background: rgba(217, 181, 109, 0.12);
+  border-color: rgba(217, 181, 109, 0.35);
+  color: var(--gold-light);
+}
+
+.pipeline-status-badge.badge-cyan {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.35);
+  color: var(--cyan-soft);
 }
 
 .pipeline-card h5 {
   font-family: var(--font-serif);
-  font-size: 17px;
+  font-size: 18px;
   color: var(--text-white);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  line-height: 1.35;
 }
 
 .pipeline-card p {
-  font-size: 12px;
+  font-size: 12.5px;
   line-height: 1.7;
   color: var(--text-secondary);
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.pipeline-card .tag-cloud {
+  margin-top: auto;
+  margin-bottom: 16px;
+}
+
+.pipeline-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  flex-wrap: wrap;
+}
+
+.proven-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--cyan-soft);
+  text-decoration: none;
+  padding: 5px 11px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  transition: all 0.25s ease;
+}
+
+.proven-action-link:hover {
+  color: #ffffff;
+  background: rgba(56, 189, 248, 0.22);
+  border-color: var(--cyan-soft);
+  transform: translateY(-1px);
+}
+
+.proven-action-link .link-arrow {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+}
+
+.proven-action-link:hover .link-arrow {
+  transform: translate(2px, -2px);
+}
+
+.proven-action-link.sub-link {
+  color: var(--gold-light);
+  background: rgba(217, 181, 109, 0.08);
+  border-color: rgba(217, 181, 109, 0.25);
+}
+
+.proven-action-link.sub-link:hover {
+  color: #ffffff;
+  background: rgba(217, 181, 109, 0.22);
+  border-color: var(--gold-primary);
+}
+
+.portal-auth-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+}
+
+.portal-auth-pill svg {
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+
+.proven-store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #34d399;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.proven-store-badge svg {
+  flex-shrink: 0;
 }
 
 .pipeline-cta {
@@ -2755,6 +2908,15 @@ ul {
   border-top: 1px solid var(--border-subtle);
   font-size: 13px;
   color: var(--text-secondary);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pipeline-cta-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 /* ==========================================================================
@@ -3207,6 +3369,14 @@ ul {
   border-color: var(--gold-primary);
   color: var(--gold-light);
   box-shadow: 0 0 18px var(--gold-glow);
+  transform: translateY(-2px);
+}
+
+.social-pill.portfolio:hover {
+  background: rgba(16, 185, 129, 0.14);
+  border-color: #10b981;
+  color: #6ee7b7;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.25);
   transform: translateY(-2px);
 }
 
@@ -6411,6 +6581,17 @@ body.light-theme .social-pill.github:hover {
   color: #ffffff !important;
   box-shadow: 0 4px 15px rgba(15, 23, 42, 0.2) !important;
 }
+body.light-theme .social-pill.portfolio {
+  background: #ffffff !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  color: #047857 !important;
+}
+body.light-theme .social-pill.portfolio:hover {
+  background: #059669 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25) !important;
+}
 body.light-theme .founder-bio {
   color: #475569 !important;
 }
@@ -6840,10 +7021,55 @@ html[data-theme="light"] .pipeline-card,
   border: 1px solid rgba(184, 134, 45, 0.18) !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04) !important;
 }
+body.light-theme .pipeline-card:hover,
+html.theme-preload-light body .pipeline-card:hover,
+html[data-theme="light"] .pipeline-card:hover,
+.light-theme .pipeline-card:hover {
+  border-color: #b8862d !important;
+  box-shadow: 0 12px 28px rgba(184, 134, 45, 0.12) !important;
+}
+body.light-theme .pipeline-author-tag,
+html.theme-preload-light body .pipeline-author-tag,
+html[data-theme="light"] .pipeline-author-tag,
+.light-theme .pipeline-author-tag {
+  color: #785311 !important;
+}
 body.light-theme .pipeline-status-badge,
 html.theme-preload-light body .pipeline-status-badge,
 html[data-theme="light"] .pipeline-status-badge,
 .light-theme .pipeline-status-badge {
+  background: rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+  color: #0284c7 !important;
+}
+body.light-theme .pipeline-status-badge.badge-emerald,
+html.theme-preload-light body .pipeline-status-badge.badge-emerald,
+html[data-theme="light"] .pipeline-status-badge.badge-emerald,
+.light-theme .pipeline-status-badge.badge-emerald {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  color: #047857 !important;
+}
+body.light-theme .pipeline-status-badge.badge-sapphire,
+html.theme-preload-light body .pipeline-status-badge.badge-sapphire,
+html[data-theme="light"] .pipeline-status-badge.badge-sapphire,
+.light-theme .pipeline-status-badge.badge-sapphire {
+  background: rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+  color: #0284c7 !important;
+}
+body.light-theme .pipeline-status-badge.badge-gold,
+html.theme-preload-light body .pipeline-status-badge.badge-gold,
+html[data-theme="light"] .pipeline-status-badge.badge-gold,
+.light-theme .pipeline-status-badge.badge-gold {
+  background: rgba(184, 134, 45, 0.1) !important;
+  border-color: rgba(184, 134, 45, 0.3) !important;
+  color: #785311 !important;
+}
+body.light-theme .pipeline-status-badge.badge-cyan,
+html.theme-preload-light body .pipeline-status-badge.badge-cyan,
+html[data-theme="light"] .pipeline-status-badge.badge-cyan,
+.light-theme .pipeline-status-badge.badge-cyan {
   background: rgba(2, 132, 199, 0.08) !important;
   border-color: rgba(2, 132, 199, 0.25) !important;
   color: #0284c7 !important;
@@ -6859,6 +7085,60 @@ html.theme-preload-light body .pipeline-card p,
 html[data-theme="light"] .pipeline-card p,
 .light-theme .pipeline-card p {
   color: #475569 !important;
+}
+body.light-theme .pipeline-card-footer,
+html.theme-preload-light body .pipeline-card-footer,
+html[data-theme="light"] .pipeline-card-footer,
+.light-theme .pipeline-card-footer {
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+body.light-theme .proven-action-link,
+html.theme-preload-light body .proven-action-link,
+html[data-theme="light"] .proven-action-link,
+.light-theme .proven-action-link {
+  background: rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+  color: #0284c7 !important;
+}
+body.light-theme .proven-action-link:hover,
+html.theme-preload-light body .proven-action-link:hover,
+html[data-theme="light"] .proven-action-link:hover,
+.light-theme .proven-action-link:hover {
+  background: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+body.light-theme .proven-action-link.sub-link,
+html.theme-preload-light body .proven-action-link.sub-link,
+html[data-theme="light"] .proven-action-link.sub-link,
+.light-theme .proven-action-link.sub-link {
+  background: rgba(184, 134, 45, 0.08) !important;
+  border-color: rgba(184, 134, 45, 0.25) !important;
+  color: #785311 !important;
+}
+body.light-theme .proven-action-link.sub-link:hover,
+html.theme-preload-light body .proven-action-link.sub-link:hover,
+html[data-theme="light"] .proven-action-link.sub-link:hover,
+.light-theme .proven-action-link.sub-link:hover {
+  background: #b8862d !important;
+  border-color: #b8862d !important;
+  color: #ffffff !important;
+}
+body.light-theme .portal-auth-pill,
+html.theme-preload-light body .portal-auth-pill,
+html[data-theme="light"] .portal-auth-pill,
+.light-theme .portal-auth-pill {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.16) !important;
+  color: #64748b !important;
+}
+body.light-theme .proven-store-badge,
+html.theme-preload-light body .proven-store-badge,
+html[data-theme="light"] .proven-store-badge,
+.light-theme .proven-store-badge {
+  background: rgba(16, 185, 129, 0.08) !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+  color: #047857 !important;
 }
 body.light-theme .pipeline-cta,
 html.theme-preload-light body .pipeline-cta,
