@@ -1,5 +1,5 @@
 /**
- * a2stacks technologies — MASTER LUXURY INTERACTION & ANIMATION ENGINE
+ * A2Stacks Technologies — MASTER LUXURY INTERACTION & ANIMATION ENGINE
  * Senior Engineering Studio · Asutosh Sahu & Ananta Kishore Swain
  */
 
@@ -424,9 +424,9 @@
 
   const fileContents = {
     architecture: [
-      { ln: '01', html: '<span class="code-comment">// a2stacks Core Enterprise Gateway</span>' },
+      { ln: '01', html: '<span class="code-comment">// A2Stacks Core Enterprise Gateway</span>' },
       { ln: '02', html: '<span class="code-keyword">import</span> { createArchitecturalCore } <span class="code-keyword">from</span> <span class="code-str">"@a2stacks/core"</span>;' },
-      { ln: '03', html: '<span class="code-keyword">const</span> studio = <span class="code-keyword">new</span> <span class="code-fn">a2stacksTechnologies</span>({ leadership: [<span class="code-str">"Asutosh"</span>, <span class="code-str">"Ananta"</span>] });' },
+      { ln: '03', html: '<span class="code-keyword">const</span> studio = <span class="code-keyword">new</span> <span class="code-fn">A2StacksTechnologies</span>({ leadership: [<span class="code-str">"Asutosh"</span>, <span class="code-str">"Ananta"</span>] });' },
       { ln: '04', html: '<span class="code-keyword">export async function</span> <span class="code-fn">bootstrapSystem</span>() {' },
       { ln: '05', html: '  <span class="code-keyword">const</span> pipeline = <span class="code-keyword">await</span> studio.<span class="code-fn">deployHighPerformanceStack</span>();' },
       { ln: '06', html: '  <span class="code-keyword">return</span> pipeline.<span class="code-fn">streamTelemetry</span>({ targetLatency: <span class="code-str">"&lt;0.5s"</span> });' },
@@ -974,7 +974,7 @@
     }
 
     const waText = 
-`*PROJECT INQUIRY — a2stacks technologies*
+`*PROJECT INQUIRY — A2Stacks Technologies*
 -----------------------------------------
 *Client / Org:* ${data.name}
 *Email:* ${data.email || 'N/A'}
@@ -1000,7 +1000,7 @@ _Transmitted via a2stacks.com_`;
 
     const subject = encodeURIComponent(`Project Inquiry from ${data.name}: ${data.service}`);
     const bodyContent = 
-`PROJECT INITIATION BRIEF // a2stacks technologies
+`PROJECT INITIATION BRIEF // A2Stacks Technologies
 -----------------------------------------
 Client Name / Org : ${data.name}
 Email Address     : ${data.email}
@@ -1012,13 +1012,27 @@ PROJECT REQUIREMENTS & VISION:
 ${data.message}
 
 -----------------------------------------
-Transmitted to a2stacks technologies
+Transmitted to A2Stacks Technologies
 Leadership: Asutosh Sahu & Ananta Kishore Swain`;
 
-    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${encodeURIComponent(bodyContent)}`;
-    window.location.href = mailtoUrl;
+    // Copy brief to clipboard so data is preserved even if mail client isn't configured
+    try {
+      navigator.clipboard.writeText(bodyContent);
+    } catch (err) {}
 
-    showToast('Opening email client with structured brief...', '✉');
+    const encodedBody = encodeURIComponent(bodyContent);
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${encodedBody}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONTACT_EMAIL)}&su=${subject}&body=${encodedBody}`;
+
+    // Trigger mailto cleanly via DOM anchor
+    const mailAnchor = document.createElement('a');
+    mailAnchor.href = mailtoUrl;
+    mailAnchor.style.display = 'none';
+    document.body.appendChild(mailAnchor);
+    mailAnchor.click();
+    mailAnchor.remove();
+
+    showToast(`Brief copied to clipboard! <a href="${gmailUrl}" target="_blank" rel="noopener" style="color:#00f0ff; text-decoration:underline; font-weight:600; margin-left:6px;">Open in Web Gmail ↗</a>`, '✉');
   }
 
   // Form Submit Handler (respects selected dispatch channel)
@@ -1070,6 +1084,20 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
   }
   updateISTClock();
   setInterval(updateISTClock, 1000);
+
+  /* ==========================================================================
+     17b. Back to Top Smooth Navigation Handler
+     ========================================================================== */
+  const backToTopBtn = document.getElementById('backToTop');
+  backToTopBtn?.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  });
 
   /* ==========================================================================
      18. Active Navigation Highlighting on Scroll (ScrollSpy) & Mascot Advisor
@@ -1246,7 +1274,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     } else if (actionType === 'link') {
       window.open(val, '_blank', 'noopener,noreferrer');
     } else if (actionType === 'whatsapp') {
-      const text = encodeURIComponent("Hello a2stacks technologies, I would like to discuss a project.");
+      const text = encodeURIComponent("Hello A2Stacks Technologies, I would like to discuss a project.");
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank', 'noopener,noreferrer');
     } else if (actionType === 'service') {
       const sel = document.getElementById('userService');
@@ -1270,7 +1298,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     msgEl.className = `chat-msg ${sender}`;
 
     const avatarHtml = sender === 'bot'
-      ? `<div class="msg-avatar">A2S</div>`
+      ? `<div class="msg-avatar"><svg width="18" height="18" viewBox="0 0 48 48" fill="none"><path d="M24 38L8 30L24 22L40 30L24 38Z" stroke="#d4af37" stroke-width="3" fill="rgba(212,175,55,0.2)"/><path d="M24 28L8 20L24 12L40 20L24 28Z" stroke="#d4af37" stroke-width="3" fill="rgba(212,175,55,0.3)"/><path d="M24 18L12 12L24 6L36 12L24 18Z" stroke="#00f0ff" stroke-width="3.5" fill="rgba(0,240,255,0.4)"/><circle cx="24" cy="12" r="3" fill="#00f0ff"/></svg></div>`
       : `<div class="msg-avatar">YOU</div>`;
 
     let actionsHtml = '';
@@ -1313,7 +1341,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     indicator.className = 'chat-msg bot typing-wrapper';
     indicator.id = 'botTypingIndicator';
     indicator.innerHTML = `
-      <div class="msg-avatar">A2S</div>
+      <div class="msg-avatar"><svg width="18" height="18" viewBox="0 0 48 48" fill="none"><path d="M24 38L8 30L24 22L40 30L24 38Z" stroke="#d4af37" stroke-width="3" fill="rgba(212,175,55,0.2)"/><path d="M24 28L8 20L24 12L40 20L24 28Z" stroke="#d4af37" stroke-width="3" fill="rgba(212,175,55,0.3)"/><path d="M24 18L12 12L24 6L36 12L24 18Z" stroke="#00f0ff" stroke-width="3.5" fill="rgba(0,240,255,0.4)"/><circle cx="24" cy="12" r="3" fill="#00f0ff"/></svg></div>
       <div class="bot-typing-dots">
         <span class="typing-dot"></span>
         <span class="typing-dot"></span>
@@ -1334,7 +1362,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
   const knowledgeBase = [
     {
       keywords: ['hello', 'hi', 'hey', 'namaste', 'good morning', 'good evening', 'who are you', 'what are you', 'about you'],
-      reply: "Hello! I am the **a2stacks Digital Assistant** — your interactive guide to our senior engineering studio. Led by **Asutosh Sahu** (Lead Software Architect & Head of Engineering) and **Ananta Kishore Swain** (Lead AI & Systems Engineer), we craft bespoke high-performance websites, custom CRM systems, AI-powered automation, and native Android apps.\n\nHow can I help engineer your vision today?",
+      reply: "Hello! I am the **A2Stacks Digital Assistant** — your interactive guide to our senior engineering studio. Led by **Asutosh Sahu** (Lead Software Architect & Head of Engineering) and **Ananta Kishore Swain** (Lead AI & Systems Engineer), we craft bespoke high-performance websites, custom CRM systems, AI-powered automation, and native Android apps.\n\nHow can I help engineer your vision today?",
       actions: [
         { label: '⚡ Our Capabilities', action: 'scroll', value: '#services' },
         { label: '🚀 CADLAB Case Study', action: 'cadlab' },
@@ -1399,7 +1427,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     },
     {
       keywords: ['founder', 'founders', 'asutosh', 'ananta', 'sahu', 'swain', 'team', 'who made', 'leadership', 'engineers', 'profiles', 'github', 'linkedin'],
-      reply: "**a2stacks technologies** is led directly by senior engineering leadership:\n\n• **Asutosh Sahu** (Lead Software Architect & Head of Engineering Dept)\n  Specialties: Full-Stack Architecture · Distributed Systems · Enterprise Software\n  Projects: Creative Techno College Web & Creative Student Zone Android App\n  Profiles: [LinkedIn](https://www.linkedin.com/in/asutosh-sahu-b3219426b/) · [GitHub](https://github.com/Asutosh-0/)\n\n• **Ananta Kishore Swain** (Lead AI & Systems Engineer)\n  Specialties: Autonomous AI Workflows · Systems Integration · Cloud Infrastructure\n  Projects: NyayaVakil AI Co-Pilot, CTC Staff Management System (SMS), AI Academic Success Tracker & NeuroTraceAI\n  Profiles: [LinkedIn](https://www.linkedin.com/in/ananta-kishore-swain-6282472bb/) · [GitHub](https://github.com/ananta12-d) · [Portfolio](https://ananta-portfolio-beta.vercel.app/)\n\nYou collaborate directly with senior technical leads from day one — zero junior account managers.",
+      reply: "**A2Stacks Technologies** is led directly by senior engineering leadership:\n\n• **Asutosh Sahu** (Lead Software Architect & Head of Engineering Dept)\n  Specialties: Full-Stack Architecture · Distributed Systems · Enterprise Software\n  Projects: Creative Techno College Web & Creative Student Zone Android App\n  Profiles: [LinkedIn](https://www.linkedin.com/in/asutosh-sahu-b3219426b/) · [GitHub](https://github.com/Asutosh-0/)\n\n• **Ananta Kishore Swain** (Lead AI & Systems Engineer)\n  Specialties: Autonomous AI Workflows · Systems Integration · Cloud Infrastructure\n  Projects: NyayaVakil AI Co-Pilot, CTC Staff Management System (SMS), AI Academic Success Tracker & NeuroTraceAI\n  Profiles: [LinkedIn](https://www.linkedin.com/in/ananta-kishore-swain-6282472bb/) · [GitHub](https://github.com/ananta12-d) · [Portfolio](https://ananta-portfolio-beta.vercel.app/)\n\nYou collaborate directly with senior technical leads from day one — zero junior account managers.",
       actions: [
         { label: 'Meet Leadership ↗', action: 'scroll', value: '#founders' },
         { label: "Ananta's LinkedIn ↗", action: 'link', value: 'https://www.linkedin.com/in/ananta-kishore-swain-6282472bb/' },
@@ -1461,7 +1489,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     }
 
     return {
-      reply: "That sounds like a distinctive and intriguing project requirement! While I am trained on a2stacks technologies' core disciplines, our engineering leads **Asutosh Sahu** and **Ananta Kishore Swain** specialize in solving custom technical puzzles.\n\nWould you like me to connect you with them directly on WhatsApp or prepare a project brief?",
+      reply: "That sounds like a distinctive and intriguing project requirement! While I am trained on A2Stacks Technologies' core disciplines, our engineering leads **Asutosh Sahu** and **Ananta Kishore Swain** specialize in solving custom technical puzzles.\n\nWould you like me to connect you with them directly on WhatsApp or prepare a project brief?",
       actions: [
         { label: 'Connect on WhatsApp 💬', action: 'whatsapp', isWa: true },
         { label: 'Fill Project Form ✍️', action: 'scroll', value: '#contact' },
@@ -1522,7 +1550,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     chatMessages.innerHTML = '';
     appendMessage(
       'bot',
-      "Hello! I am the **a2stacks Digital Assistant** — the direct intelligence layer of our studio. We specialize in bespoke website design, enterprise CRM systems, autonomous AI integrations, and mobile applications.\n\nHow can I help engineer your vision today?",
+      "Hello! I am the **A2Stacks Digital Assistant** — the direct intelligence layer of our studio. We specialize in bespoke website design, enterprise CRM systems, autonomous AI integrations, and mobile applications.\n\nHow can I help engineer your vision today?",
       [
         { label: '⚡ Explore Capabilities', action: 'scroll', value: '#services' },
         { label: '🚀 Case Studies', action: 'scroll', value: '#work' },

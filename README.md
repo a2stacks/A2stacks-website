@@ -1,4 +1,4 @@
-# a2stacks technologies — Official Web Experience
+# A2Stacks Technologies — Official Web Experience
 
 > **Turning Ideas Into Technology**  
 > Senior Engineering Studio led by **Asutosh Sahu** & **Ananta Kishore Swain** · Est. 2026.
@@ -7,7 +7,7 @@
 
 ## ✦ Overview
 
-This repository contains the ultra-luxurious, high-performance web experience for **a2stacks technologies**. Designed with a deep obsidian, champagne gold foil, and electric cyber sapphire aesthetic, the site showcases the studio’s bespoke engineering capabilities, flagship case studies, client relationships, and execution blueprint.
+This repository contains the ultra-luxurious, high-performance web experience for **A2Stacks Technologies**. Designed with a deep obsidian, champagne gold foil, and electric cyber sapphire aesthetic, the site showcases the studio’s bespoke engineering capabilities, flagship case studies, client relationships, and execution blueprint.
 
 ## ✦ Core Disciplines & Services
 
