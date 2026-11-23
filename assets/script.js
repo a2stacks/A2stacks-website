@@ -998,7 +998,7 @@ _Transmitted via a2stacks.com_`;
       return;
     }
 
-    const subject = encodeURIComponent(`Project Inquiry from ${data.name}: ${data.service}`);
+    const subject = encodeURIComponent(`Project Brief: ${data.name} // A2Stacks Technologies`);
     const bodyContent = 
 `PROJECT INITIATION BRIEF // A2Stacks Technologies
 -----------------------------------------
@@ -1105,6 +1105,34 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
   const sections = document.querySelectorAll('section[id]');
   const navItems = document.querySelectorAll('.nav-links .nav-item');
 
+  // Real-time client session intelligence state
+  const userActivity = {
+    currentSection: 'hero',
+    visitedSections: new Set(['hero']),
+    timeOnSite: 0,
+    serviceInterests: [],
+    lastCardClicked: null,
+    hasInteractedWithBot: false
+  };
+
+  // Live session timer
+  setInterval(() => {
+    userActivity.timeOnSite++;
+  }, 1000);
+
+  // Track service card clicks & hovers across the website
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const title = card.querySelector('.service-title')?.textContent?.trim();
+      if (title) {
+        userActivity.lastCardClicked = title;
+        if (!userActivity.serviceInterests.includes(title)) {
+          userActivity.serviceInterests.push(title);
+        }
+      }
+    });
+  });
+
   window.addEventListener('scroll', () => {
     let current = '';
     const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
@@ -1124,13 +1152,17 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
       }
     });
 
-    if (current && typeof updateSpeechBubble === 'function') {
-      updateSpeechBubble(current);
+    if (current) {
+      userActivity.currentSection = current;
+      userActivity.visitedSections.add(current);
+      if (typeof updateSpeechBubble === 'function') {
+        updateSpeechBubble(current);
+      }
     }
   }, { passive: true });
 
   /* ==========================================================================
-     19. Intelligent AI Assistant, Mascot Companion & Knowledge Base
+     19. Intelligent AI Assistant, Mascot Companion & Context Engine
      ========================================================================== */
   const botTrigger = document.getElementById('botTrigger');
   const wavingArm = document.getElementById('wavingArm');
@@ -1222,6 +1254,101 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     openChatWindow();
   });
 
+  // Dynamic Context-Aware Greeting Generator
+  function getContextualGreeting() {
+    const sec = userActivity.currentSection || 'hero';
+    const lastService = userActivity.lastCardClicked || (userActivity.serviceInterests.length > 0 ? userActivity.serviceInterests[userActivity.serviceInterests.length - 1] : null);
+
+    if (lastService) {
+      return {
+        text: `👋 I noticed you were exploring **${lastService}**!\nWe engineer custom high-performance builds with sub-second speed, zero monthly per-seat SaaS lock-in, and 100% source code ownership.\n\nTell me your requirements or say *"autofill form"* and I will prepare your project brief right now!`,
+        actions: [
+          { label: '⚡ Auto-fill Form for This', action: 'service', value: lastService },
+          { label: '💬 Direct WhatsApp', action: 'whatsapp', isWa: true },
+          { label: '🚀 View CADLAB Work', action: 'scroll', value: '#work' }
+        ]
+      };
+    }
+
+    if (sec === 'services') {
+      return {
+        text: `⚡ You are currently exploring our **Capabilities & Services**!\nAre you looking for a bespoke website, custom CRM/ERP workflow, or autonomous AI integrations?\n\nYou can chat with me or say *"my name is..., email..., phone..."* and I will automatically populate our project form on this page for you!`,
+        actions: [
+          { label: '🌐 Website Architecture', action: 'service', value: 'Website design & development' },
+          { label: '📊 Custom CRM / ERP', action: 'service', value: 'Custom CRM system' },
+          { label: '🤖 Autonomous AI Agents', action: 'service', value: 'AI chatbot' },
+          { label: '📱 Android Applications', action: 'service', value: 'Android application' }
+        ]
+      };
+    }
+
+    if (sec === 'work') {
+      return {
+        text: `🚀 Reviewing our **CADLAB** flagship case study?\nWe built CADLAB's entire corporate web ecosystem with sub-0.6s loading benchmarks and fluid modern typography.\n\nWould you like a similar high-performance digital footprint for your brand?`,
+        actions: [
+          { label: 'Inspect CADLAB Live ↗', action: 'cadlab' },
+          { label: '✍️ Request Similar Build', action: 'scroll', value: '#contact' },
+          { label: '💬 Chat on WhatsApp', action: 'whatsapp', isWa: true }
+        ]
+      };
+    }
+
+    if (sec === 'founders') {
+      return {
+        text: `🤝 Meet our engineering leadership: **Asutosh Sahu** (Lead Software Architect) and **Ananta Kishore Swain** (Lead AI & Systems Engineer).\n\nWhen you partner with A2Stacks Technologies, you collaborate directly with senior technical leads from day one — zero junior account managers.\n\nReady to discuss your technical architecture?`,
+        actions: [
+          { label: 'Book Kickoff Call 💬', action: 'whatsapp', isWa: true },
+          { label: '✍️ Submit Project Brief', action: 'scroll', value: '#contact' },
+          { label: "Ananta's GitHub ↗", action: 'link', value: 'https://github.com/ananta12-d' },
+          { label: "Asutosh's GitHub ↗", action: 'link', value: 'https://github.com/Asutosh-0/' }
+        ]
+      };
+    }
+
+    if (sec === 'process') {
+      return {
+        text: `🛠 You're checking our **4-Phase Execution Blueprint**: Discovery ➔ Architecture ➔ Full-Stack Build ➔ Launch & Support.\n\nWe provide weekly milestone demonstrations and 100% intellectual property ownership.\n\nNeed a timeline or milestone quote for your scope?`,
+        actions: [
+          { label: '⏱ Ask Timelines', action: 'query', value: 'What are your project timelines?' },
+          { label: '💰 Ask Pricing & Tiers', action: 'query', value: 'How does your pricing work?' },
+          { label: '✍️ Start Project Brief', action: 'scroll', value: '#contact' }
+        ]
+      };
+    }
+
+    if (sec === 'faq') {
+      return {
+        text: `❓ Exploring our **Frequently Asked Questions**?\nIf you have questions about code ownership, timelines, AI integration, or pricing models, ask me right here!`,
+        actions: [
+          { label: 'Code & IP Ownership?', action: 'query', value: 'Do we own the source code?' },
+          { label: 'AI Integration Scope?', action: 'query', value: 'Can you integrate AI into our existing system?' },
+          { label: 'Agency vs Studio?', action: 'query', value: 'Why choose an independent studio over an agency?' }
+        ]
+      };
+    }
+
+    if (sec === 'contact') {
+      return {
+        text: `✨ Ready to bring your vision to life?\nYou can fill the Project Initiation Form right here on this page, or **tell me in chat** your name, phone, email, and requirements — I'll automatically fill the form for you and help you dispatch it via WhatsApp or Email!`,
+        actions: [
+          { label: '📲 Transmit on WhatsApp', action: 'whatsapp', isWa: true },
+          { label: '👀 View Project Form', action: 'scroll', value: '#contact' },
+          { label: '⚡ Auto-fill Example', action: 'query', value: 'Autofill form: Name Rohit, email rohit@domain.com, phone 9876543210, service Website design, budget Growth tier' }
+        ]
+      };
+    }
+
+    return {
+      text: `Hello! I am the **A2Stacks Digital Assistant** — the real-time intelligence layer of our engineering studio led by **Asutosh Sahu** & **Ananta Kishore Swain**.\n\nI monitor your session live, can recommend technical stacks, answer architectural questions, or **automatically fill out your project inquiry form** directly from what you type here!\n\nHow can I help engineer your vision today?`,
+      actions: [
+        { label: '⚡ Explore Capabilities', action: 'scroll', value: '#services' },
+        { label: '🚀 CADLAB Case Study', action: 'scroll', value: '#work' },
+        { label: '👤 Leadership', action: 'scroll', value: '#founders' },
+        { label: '💬 Chat on WhatsApp', action: 'whatsapp', isWa: true }
+      ]
+    };
+  }
+
   function openChatWindow() {
     isChatOpen = true;
     aaChatbotWindow?.classList.add('open');
@@ -1229,6 +1356,12 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     botTrigger?.classList.add('chat-open');
     botTrigger?.setAttribute('aria-expanded', 'true');
     botSpeechBubble?.classList.add('bubble-hidden');
+
+    // Adaptively initialize with active section context if fresh
+    if (!userActivity.hasInteractedWithBot) {
+      initChatConversation();
+    }
+
     if (chatInput) {
       setTimeout(() => chatInput.focus(), 250);
     }
@@ -1258,13 +1391,176 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     }
   });
 
+  // Client brief memory store
+  let lastExtractedBrief = null;
+
+  function flashFormElement(el) {
+    if (!el) return;
+    el.classList.remove('field-autofilled');
+    void el.offsetWidth;
+    el.classList.add('field-autofilled');
+    setTimeout(() => {
+      el.classList.remove('field-autofilled');
+    }, 3800);
+  }
+
+  // Natural Language Entity Extractor
+  function extractInquiryEntities(rawText) {
+    const text = rawText.trim();
+    const entities = {
+      name: null,
+      email: null,
+      phone: null,
+      service: null,
+      budget: null,
+      message: null,
+      isAutoFillIntent: false
+    };
+
+    if (/autofill|fill\s+(?:the\s+)?form|populate\s+(?:the\s+)?form|add\s+data|put\s+(?:it\s+)?in\s+form|send\s+form/i.test(text)) {
+      entities.isAutoFillIntent = true;
+    }
+
+    // 1. Email extraction
+    const emailMatch = text.match(/\b([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/);
+    if (emailMatch) {
+      entities.email = emailMatch[1];
+    }
+
+    // 2. Phone extraction (at least 10 digits)
+    const phoneMatch = text.match(/(?:\+?91[\s-]?)?[6789]\d{9}\b|\b(?:\+?\d{1,3}[\s-]?)?\(?\d{3,4}\)?[\s.-]?\d{3,4}[\s.-]?\d{3,4}\b/);
+    if (phoneMatch) {
+      const cleanPhone = phoneMatch[0].trim();
+      if (cleanPhone.replace(/\D/g, '').length >= 10) {
+        entities.phone = cleanPhone;
+      }
+    }
+
+    // 3. Name extraction
+    const nameExplicit = text.match(/(?:my name is|i am|i'm|name[:=\s]+)\s*([A-Za-z\s]{2,25})(?=[,\.\n]|$|\band\b|\bwith\b|\bemail\b|\bphone\b|\bcontact\b|\blooking\b|\bneed\b|\bfor\b)/i);
+    if (nameExplicit) {
+      entities.name = nameExplicit[1].trim();
+    }
+
+    // 4. Service mapping
+    const serviceMap = [
+      { key: /web(?:site)?(?:\s+design|\s+development|\s+architecture)?|landing\s+page|frontend/i, val: 'Website design & development' },
+      { key: /portfolio|creator\s+site|personal\s+brand/i, val: 'Portfolio website' },
+      { key: /crm|erp|customer\s+management|pipeline|lead\s+routing/i, val: 'Custom CRM system' },
+      { key: /dashboard|analytics|kpi/i, val: 'AI-integrated dashboard' },
+      { key: /ai\s+chatbot|bot|agent|llm|copilot/i, val: 'AI chatbot' },
+      { key: /enterprise\s+software|web\s+software|inventory|billing/i, val: 'Web software' },
+      { key: /android|mobile\s+app|apk|play\s+store/i, val: 'Android application' },
+      { key: /r&d|mvp|prototype|audit|bespoke/i, val: 'Something else' }
+    ];
+
+    for (const item of serviceMap) {
+      if (item.key.test(text)) {
+        entities.service = item.val;
+        break;
+      }
+    }
+
+    // 5. Budget mapping
+    if (/starter|mvp|basic|small|15k|20k|25k/i.test(text)) {
+      entities.budget = 'Starter / MVP';
+    } else if (/growth|custom|medium|40k|50k|60k|75k/i.test(text)) {
+      entities.budget = 'Growth / Custom';
+    } else if (/enterprise|scale|large|1l|1\s*lakh|2l|2\s*lakh/i.test(text)) {
+      entities.budget = 'Enterprise Scale';
+    } else if (/flexible|tbd|not\s+sure/i.test(text)) {
+      entities.budget = 'Flexible / TBD';
+    }
+
+    // 6. Message extraction
+    let cleanedMessage = text;
+    if (entities.email) cleanedMessage = cleanedMessage.replace(entities.email, '');
+    if (entities.phone) cleanedMessage = cleanedMessage.replace(entities.phone, '');
+    cleanedMessage = cleanedMessage
+      .replace(/(?:my name is|i am|i'm|name[:=\s]+)\s*[A-Za-z\s]{2,25}/gi, '')
+      .replace(/autofill|fill\s+(?:the\s+)?form|populate/gi, '')
+      .replace(/email[:=\s]+/gi, '')
+      .replace(/phone[:=\s]+|whatsapp[:=\s]+/gi, '')
+      .replace(/budget[:=\s]+(?:starter|growth|enterprise|flexible|custom|mvp|scale)/gi, '')
+      .replace(/service[:=\s]+[A-Za-z\s]+/gi, '')
+      .replace(/[,;:]+/g, ' ')
+      .trim();
+
+    if (cleanedMessage.length > 5) {
+      entities.message = cleanedMessage;
+    } else {
+      entities.message = 'Client submitted project brief via A2Stacks Intelligent Digital Assistant.';
+    }
+
+    return entities;
+  }
+
+  // Populate page form fields directly
+  function populatePageForm(entities) {
+    let populatedCount = 0;
+    const nameEl = document.getElementById('userName');
+    const emailEl = document.getElementById('userEmail');
+    const phoneEl = document.getElementById('userPhone');
+    const serviceEl = document.getElementById('userService');
+    const budgetInput = document.getElementById('budgetInput');
+    const messageEl = document.getElementById('userMessage');
+
+    if (entities.name && nameEl) {
+      nameEl.value = entities.name;
+      flashFormElement(nameEl);
+      populatedCount++;
+    }
+    if (entities.email && emailEl) {
+      emailEl.value = entities.email;
+      flashFormElement(emailEl);
+      populatedCount++;
+    }
+    if (entities.phone && phoneEl) {
+      phoneEl.value = entities.phone;
+      flashFormElement(phoneEl);
+      populatedCount++;
+    }
+    if (entities.service && serviceEl) {
+      serviceEl.value = entities.service;
+      flashFormElement(serviceEl);
+      populatedCount++;
+    }
+    if (entities.budget && budgetInput) {
+      budgetInput.value = entities.budget;
+      document.querySelectorAll('.budget-pill').forEach(pill => {
+        if (pill.getAttribute('data-budget')?.toLowerCase().includes(entities.budget.toLowerCase().split(' ')[0])) {
+          pill.classList.add('active');
+          flashFormElement(pill);
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+      populatedCount++;
+    }
+    if (entities.message && messageEl) {
+      messageEl.value = entities.message;
+      flashFormElement(messageEl);
+      populatedCount++;
+    }
+
+    lastExtractedBrief = {
+      name: nameEl?.value || entities.name || 'Valued Client',
+      email: emailEl?.value || entities.email || '',
+      phone: phoneEl?.value || entities.phone || '',
+      service: serviceEl?.value || entities.service || 'General Project Consultation',
+      budget: budgetInput?.value || entities.budget || 'Flexible / TBD',
+      message: messageEl?.value || entities.message || 'Ready to discuss requirements'
+    };
+
+    return populatedCount;
+  }
+
   // Action Click Handler inside Bot Messages
   function handleActionClick(actionType, val) {
     if (actionType === 'scroll') {
       const targetEl = document.querySelector(val);
       if (targetEl) {
         targetEl.scrollIntoView({ behavior: 'smooth' });
-        // Close on small mobile screens to show the section
         if (window.innerWidth < 768) {
           closeChatWindow();
         }
@@ -1280,8 +1576,32 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
       const sel = document.getElementById('userService');
       if (sel && val) {
         sel.value = val;
+        flashFormElement(sel);
       }
       document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+      if (window.innerWidth < 768) {
+        closeChatWindow();
+      }
+    } else if (actionType === 'transmit_whatsapp') {
+      const data = lastExtractedBrief || getFormData();
+      if (data && data.name) {
+        sendViaWhatsApp(data);
+      } else {
+        const text = encodeURIComponent("Hello A2Stacks Technologies, I would like to discuss a project.");
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank', 'noopener,noreferrer');
+      }
+    } else if (actionType === 'transmit_email') {
+      const data = lastExtractedBrief || getFormData();
+      if (data && data.name) {
+        sendViaEmail(data);
+      } else {
+        const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Project Inquiry // A2Stacks Technologies")}`;
+        window.open(mailtoUrl, '_blank', 'noopener,noreferrer');
+      }
+    } else if (actionType === 'view_form') {
+      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+      const wrap = document.querySelector('.form-wrapper');
+      if (wrap) flashFormElement(wrap);
       if (window.innerWidth < 768) {
         closeChatWindow();
       }
@@ -1305,7 +1625,11 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     if (actions && actions.length > 0) {
       actionsHtml = '<div class="msg-actions-row">';
       actions.forEach(act => {
-        actionsHtml += `<button type="button" class="msg-action-btn ${act.isWa ? 'wa-btn' : ''}" data-act="${act.action}" data-val="${act.value || ''}">${act.label}</button>`;
+        let btnCls = 'msg-action-btn';
+        if (act.isWa || act.action === 'transmit_whatsapp') btnCls += ' wa-btn';
+        if (act.action === 'transmit_email') btnCls += ' email-btn';
+        if (act.action === 'view_form') btnCls += ' view-form-btn';
+        actionsHtml += `<button type="button" class="${btnCls}" data-act="${act.action}" data-val="${act.value || ''}">${act.label}</button>`;
       });
       actionsHtml += '</div>';
     }
@@ -1504,17 +1828,59 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
 
     if (chatInput) chatInput.value = '';
 
+    userActivity.hasInteractedWithBot = true;
+
     // Append user message
     appendMessage('user', text);
 
     // Show typing indicator
     showTypingIndicator();
 
-    // Natural bot response delay
-    const responseDelay = Math.floor(Math.random() * 250) + 400;
+    const responseDelay = Math.floor(Math.random() * 200) + 350;
 
     setTimeout(() => {
       removeTypingIndicator();
+
+      const lower = text.toLowerCase().trim();
+
+      // Check for direct dispatch triggers
+      if (/^(?:send|open|transmit|direct)\s*(?:on\s*)?whatsapp$/i.test(lower) || lower === 'whatsapp') {
+        const data = lastExtractedBrief || getFormData();
+        if (data && data.name) {
+          sendViaWhatsApp(data);
+          appendMessage('bot', `📲 **Dispatched via WhatsApp!** Opening WhatsApp chat directly with engineering leads at **+91 79789 91323**.`);
+          return;
+        }
+      }
+      if (/^(?:send|open|mail|transmit)\s*(?:via\s*)?(?:email|mail)$/i.test(lower) || lower === 'email') {
+        const data = lastExtractedBrief || getFormData();
+        if (data && data.name) {
+          sendViaEmail(data);
+          appendMessage('bot', `✉️ **Email brief formatted!** Opening your mail client addressed to **${CONTACT_EMAIL}**.`);
+          return;
+        }
+      }
+
+      // Check for entity extraction & auto-fill
+      const entities = extractInquiryEntities(text);
+      if (entities.email || entities.phone || entities.isAutoFillIntent || (entities.name && (entities.service || entities.budget))) {
+        populatePageForm(entities);
+        const nameVal = entities.name || document.getElementById('userName')?.value || 'Valued Partner';
+        const emailVal = entities.email || document.getElementById('userEmail')?.value || 'Not specified';
+        const phoneVal = entities.phone || document.getElementById('userPhone')?.value || 'Not specified';
+        const serviceVal = entities.service || document.getElementById('userService')?.value || 'Website design & development';
+        const budgetVal = entities.budget || document.getElementById('budgetInput')?.value || 'Growth / Custom';
+
+        const replyMsg = `✨ **I have automatically populated your Project Initiation Form on the page!**\n\n• **Client:** ${nameVal}\n• **Email:** ${emailVal}\n• **Phone:** ${phoneVal}\n• **Scope:** ${serviceVal}\n• **Budget:** ${budgetVal}\n• **Overview:** ${entities.message}\n\nYou can review the glowing fields in the form on the page, or transmit this brief to leadership directly right now:`;
+
+        appendMessage('bot', replyMsg, [
+          { label: '📲 Transmit via WhatsApp Now', action: 'transmit_whatsapp', isWa: true },
+          { label: '✉️ Transmit via Email Now', action: 'transmit_email' },
+          { label: '👀 View Form on Page', action: 'view_form' }
+        ]);
+        return;
+      }
+
       const botResponse = findBotReply(text);
       appendMessage('bot', botResponse.reply, botResponse.actions);
     }, responseDelay);
@@ -1548,19 +1914,18 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
   function initChatConversation() {
     if (!chatMessages) return;
     chatMessages.innerHTML = '';
+    const greeting = getContextualGreeting();
     appendMessage(
       'bot',
-      "Hello! I am the **A2Stacks Digital Assistant** — the direct intelligence layer of our studio. We specialize in bespoke website design, enterprise CRM systems, autonomous AI integrations, and mobile applications.\n\nHow can I help engineer your vision today?",
-      [
-        { label: '⚡ Explore Capabilities', action: 'scroll', value: '#services' },
-        { label: '🚀 Case Studies', action: 'scroll', value: '#work' },
-        { label: '👤 Leadership', action: 'scroll', value: '#founders' },
-        { label: '💬 Chat on WhatsApp', action: 'whatsapp', isWa: true }
-      ]
+      greeting.text,
+      greeting.actions
     );
   }
 
-  chatResetBtn?.addEventListener('click', initChatConversation);
+  chatResetBtn?.addEventListener('click', () => {
+    userActivity.hasInteractedWithBot = false;
+    initChatConversation();
+  });
 
   // Initialize conversation once on load
   initChatConversation();
