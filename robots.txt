@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://aandatech.in/sitemap.xml
+Sitemap: https://a2stacks.com/sitemap.xml

@@ -4067,6 +4067,105 @@ ul {
   font-weight: 600;
 }
 
+/* Dispatch Channel Selector */
+.dispatch-selector-group {
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
+.dispatch-toggle-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.dispatch-choice-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+}
+
+.dispatch-choice-btn:hover {
+  background: rgba(217, 181, 109, 0.06);
+  border-color: rgba(217, 181, 109, 0.3);
+  color: var(--text-white);
+}
+
+.dispatch-choice-btn .dispatch-radio-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.dispatch-choice-btn.active {
+  background: rgba(217, 181, 109, 0.12);
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.dispatch-choice-btn.active[data-channel="whatsapp"] {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: #10b981;
+  color: #6ee7b7;
+}
+
+.dispatch-choice-btn.active .dispatch-radio-dot {
+  border-color: var(--gold-primary);
+}
+
+.dispatch-choice-btn.active[data-channel="whatsapp"] .dispatch-radio-dot {
+  border-color: #10b981;
+}
+
+.dispatch-choice-btn.active .dispatch-radio-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+}
+
+.dispatch-choice-btn.active[data-channel="whatsapp"] .dispatch-radio-dot::after {
+  background: #10b981;
+}
+
+.dispatch-choice-btn svg {
+  flex-shrink: 0;
+}
+
+.button-gold.button-whatsapp-active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-color: #34d399;
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+}
+
+.button-gold.button-whatsapp-active:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 6px 28px rgba(16, 185, 129, 0.5);
+}
+
 /* Form Action Buttons */
 .form-submit-row {
   display: grid;
@@ -6409,6 +6508,36 @@ body.light-theme .budget-pill.active {
 }
 body.light-theme .form-note {
   color: #64748b !important;
+}
+body.light-theme .dispatch-choice-btn {
+  background: #f8f7f4 !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #475569 !important;
+}
+body.light-theme .dispatch-choice-btn:hover {
+  background: #ffffff !important;
+  border-color: rgba(184, 134, 45, 0.4) !important;
+  color: #0a1120 !important;
+}
+body.light-theme .dispatch-choice-btn .dispatch-radio-dot {
+  border-color: rgba(0, 0, 0, 0.25) !important;
+}
+body.light-theme .dispatch-choice-btn.active {
+  background: rgba(184, 134, 45, 0.12) !important;
+  border-color: var(--gold-primary) !important;
+  color: #785311 !important;
+  font-weight: 700 !important;
+}
+body.light-theme .dispatch-choice-btn.active[data-channel="whatsapp"] {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-color: #059669 !important;
+  color: #047857 !important;
+}
+body.light-theme .dispatch-choice-btn.active .dispatch-radio-dot {
+  border-color: var(--gold-primary) !important;
+}
+body.light-theme .dispatch-choice-btn.active[data-channel="whatsapp"] .dispatch-radio-dot {
+  border-color: #059669 !important;
 }
 
 /* -------------------------------------------------------------------------
