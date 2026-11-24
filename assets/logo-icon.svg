@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080e1a" />
+      <stop offset="50%" stop-color="#04070f" />
+      <stop offset="100%" stop-color="#020408" />
+    </linearGradient>
+
+    <!-- Master Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff5d6" />
+      <stop offset="25%" stop-color="#fad961" />
+      <stop offset="70%" stop-color="#d4af37" />
+      <stop offset="100%" stop-color="#997b1e" />
+    </linearGradient>
+
+    <!-- Secondary Soft Gold -->
+    <linearGradient id="goldSoft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#fad961" stop-opacity="0.2" />
+    </linearGradient>
+
+    <!-- Electric Cyan Gradient -->
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0fcff" />
+      <stop offset="35%" stop-color="#00f0ff" />
+      <stop offset="80%" stop-color="#0088ff" />
+      <stop offset="100%" stop-color="#0044aa" />
+    </linearGradient>
+
+    <!-- Neon Glow Filter -->
+    <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Ambient Radial Glows -->
+    <radialGradient id="ambientCyan" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="ambientGold" cx="50%" cy="75%" r="50%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Base Icon Squircle (App / Profile Icon Standard) -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <rect width="510" height="510" x="1" y="1" rx="111" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-opacity="0.45" />
+
+  <!-- Inner Ambient Atmospheric Lighting -->
+  <rect width="512" height="512" rx="112" fill="url(#ambientCyan)" />
+  <rect width="512" height="512" rx="112" fill="url(#ambientGold)" />
+
+  <!-- Subtle Corner Frame Coordinates / HUD Marks -->
+  <path d="M 44 80 L 44 44 L 80 44" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-opacity="0.3" />
+  <path d="M 468 80 L 468 44 L 432 44" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-opacity="0.3" />
+  <path d="M 44 432 L 44 468 L 80 468" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-opacity="0.3" />
+  <path d="M 468 432 L 468 468 L 432 468" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-opacity="0.3" />
+
+  <!-- ==========================================
+       ISOMETRIC STACK FOUNDATION (BASE PLATES)
+       ========================================== -->
+  <!-- Base Tier 1: Infrastructure & Data Plate -->
+  <g id="bottomStackPlate">
+    <!-- Plate Top Face -->
+    <path d="M256 420 L116 345 L256 270 L396 345 Z" fill="rgba(212, 175, 55, 0.08)" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linejoin="round" />
+    <!-- Plate 3D Depth / Bevels -->
+    <path d="M116 345 L116 358 L256 433 L396 358 L396 345 L256 420 Z" fill="rgba(153, 123, 30, 0.25)" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linejoin="round" stroke-opacity="0.6" />
+  </g>
+
+  <!-- Mid Tier 2: Core Engineering & Systems Architecture -->
+  <g id="midStackPlate">
+    <path d="M256 350 L126 280 L256 210 L386 280 Z" fill="rgba(212, 175, 55, 0.16)" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linejoin="round" />
+    <path d="M126 280 L126 292 L256 362 L386 292 L386 280 L256 350 Z" fill="rgba(212, 175, 55, 0.3)" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linejoin="round" stroke-opacity="0.7" />
+  </g>
+
+  <!-- ==========================================
+       THE "A²S" ARCHITECTURAL MONOGRAM
+       ========================================== -->
+
+  <!-- Architectural 'A' Apex & Framework -->
+  <!-- Left Leg of A -->
+  <path d="M174 340 L256 128" stroke="url(#goldGrad)" stroke-width="14" stroke-linecap="round" filter="url(#goldGlow)" />
+  <!-- Right Leg of A -->
+  <path d="M338 340 L256 128" stroke="url(#goldGrad)" stroke-width="14" stroke-linecap="round" filter="url(#goldGlow)" />
+
+  <!-- Crossbar of 'A' (Double Precision Rails) -->
+  <line x1="198" y1="262" x2="314" y2="262" stroke="url(#goldGrad)" stroke-width="6.5" stroke-linecap="round" />
+
+  <!-- Top Tier 3: Floating Electric Cyan AI & Cloud Hex-Plate -->
+  <g id="topCyanPlate" filter="url(#cyanGlow)">
+    <path d="M256 182 L168 135 L256 88 L344 135 Z" fill="rgba(0, 240, 255, 0.22)" stroke="url(#cyanGrad)" stroke-width="3.5" stroke-linejoin="round" />
+  </g>
+
+  <!-- The "S" (Streams / Stacks Ribbon flowing through the center of A) -->
+  <path d="M298 198 
+           C298 165, 214 165, 214 212 
+           C214 252, 298 245, 298 290 
+           C298 335, 206 335, 206 298" 
+        fill="none" 
+        stroke="url(#cyanGrad)" 
+        stroke-width="11" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        filter="url(#cyanGlow)" />
+
+  <!-- The Superscript "2" (Square Factor / A² Exponent at Upper Right) -->
+  <g id="superscriptTwo" transform="translate(322, 82)">
+    <!-- Cyan Glowing Badge Ring -->
+    <circle cx="28" cy="28" r="28" fill="#061224" stroke="url(#cyanGrad)" stroke-width="2" />
+    <!-- Stylized Geometric '2' Exponent -->
+    <path d="M20 18 
+             C20 13, 36 13, 36 21 
+             C36 27, 20 33, 20 40 
+             L38 40" 
+          fill="none" 
+          stroke="url(#cyanGrad)" 
+          stroke-width="4.5" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          filter="url(#cyanGlow)" />
+  </g>
+
+  <!-- Apex Nexus Pulse Core Node -->
+  <circle cx="256" cy="135" r="7.5" fill="#ffffff" filter="url(#cyanGlow)" />
+  <circle cx="256" cy="135" r="3.5" fill="#00f0ff" />
+
+  <!-- Auxiliary Quantum Sync Nodes on Stack Vertices -->
+  <circle cx="168" cy="135" r="3.5" fill="#00f0ff" />
+  <circle cx="344" cy="135" r="3.5" fill="#00f0ff" />
+  <circle cx="126" cy="280" r="3.5" fill="#fad961" />
+  <circle cx="386" cy="280" r="3.5" fill="#fad961" />
+  <circle cx="256" cy="350" r="3.5" fill="#fad961" />
+  <circle cx="256" cy="420" r="3.5" fill="#fad961" />
+</svg>

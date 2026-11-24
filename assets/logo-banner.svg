@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1128 191" width="1128" height="191">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bannerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050a14" />
+      <stop offset="60%" stop-color="#020409" />
+      <stop offset="100%" stop-color="#07101f" />
+    </linearGradient>
+
+    <!-- Master Gold Gradient -->
+    <linearGradient id="bannerGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff5d6" />
+      <stop offset="40%" stop-color="#fad961" />
+      <stop offset="100%" stop-color="#d4af37" />
+    </linearGradient>
+
+    <!-- Electric Cyan Gradient -->
+    <linearGradient id="bannerCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0fcff" />
+      <stop offset="50%" stop-color="#00f0ff" />
+      <stop offset="100%" stop-color="#0077ff" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="bannerGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <radialGradient id="bannerBloom" cx="80%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Banner Background -->
+  <rect width="1128" height="191" fill="url(#bannerBg)" />
+  <rect width="1128" height="191" fill="url(#bannerBloom)" />
+
+  <!-- Subtle Cybernetic Grid Pattern -->
+  <g opacity="0.08" stroke="#00f0ff" stroke-width="0.75">
+    <line x1="0" y1="40" x2="1128" y2="40" />
+    <line x1="0" y1="95" x2="1128" y2="95" />
+    <line x1="0" y1="150" x2="1128" y2="150" />
+    <line x1="200" y1="0" x2="200" y2="191" />
+    <line x1="400" y1="0" x2="400" y2="191" />
+    <line x1="600" y1="0" x2="600" y2="191" />
+    <line x1="800" y1="0" x2="800" y2="191" />
+    <line x1="1000" y1="0" x2="1000" y2="191" />
+  </g>
+
+  <!-- Left Side: Ambient Space reserved for LinkedIn circular profile picture cutout -->
+  <circle cx="110" cy="191" r="95" fill="none" stroke="#d4af37" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="4 6" />
+
+  <!-- ========================================================
+       CENTER & RIGHT: BRAND NARRATIVE & PILLARS
+       ======================================================== -->
+  <g transform="translate(240, 0)">
+    <!-- Top HUD Coordinates -->
+    <text x="0" y="38" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#00f0ff" letter-spacing="4" opacity="0.85">
+      // A2STACKS TECHNOLOGIES · DIGITAL ENGINEERING STUDIO · ODISHA, INDIA
+    </text>
+
+    <!-- Main Title Typography -->
+    <text x="0" y="86" font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif" font-size="44" font-weight="800" fill="url(#bannerGold)" letter-spacing="1.5">
+      A<tspan dy="-16" font-size="26" fill="url(#bannerCyan)">2</tspan><tspan dy="16" fill="#ffffff">STACKS</tspan> <tspan fill="url(#bannerCyan)" font-size="28" font-weight="600">TECHNOLOGIES</tspan>
+    </text>
+
+    <!-- Core Tagline -->
+    <text x="2" y="118" font-family="'Playfair Display', serif" font-style="italic" font-size="18" fill="#e2e8f0" letter-spacing="1">
+      Turning Ideas Into Technology.
+    </text>
+
+    <!-- 3 Core Capabilities Strip -->
+    <g transform="translate(0, 150)">
+      <!-- Capability 1: Web -->
+      <text x="0" y="0" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" fill="#38bdf8" letter-spacing="1">
+        ✦ SUB-SECOND WEB ARCHITECTURE
+      </text>
+
+      <!-- Capability 2: CRM -->
+      <text x="250" y="0" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" fill="#fad961" letter-spacing="1">
+        ✦ CUSTOM CRM &amp; WORKFLOWS
+      </text>
+
+      <!-- Capability 3: AI -->
+      <text x="500" y="0" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" fill="#00f0ff" letter-spacing="1">
+        ✦ AUTONOMOUS AI INTEGRATIONS
+      </text>
+    </g>
+  </g>
+
+  <!-- Right Decorative Geometry / Isometric Accent -->
+  <g transform="translate(1000, 30) scale(0.35)" opacity="0.6">
+    <path d="M100 160 L20 120 L100 80 L180 120 Z" stroke="url(#bannerGold)" stroke-width="3" fill="none" />
+    <path d="M100 120 L20 80 L100 40 L180 80 Z" stroke="url(#bannerCyan)" stroke-width="3" fill="none" />
+    <circle cx="100" cy="80" r="8" fill="#00f0ff" filter="url(#bannerGlow)" />
+  </g>
+
+  <!-- Outer Fine Border -->
+  <rect width="1126" height="189" x="1" y="1" fill="none" stroke="#d4af37" stroke-width="1" stroke-opacity="0.3" />
+</svg>
