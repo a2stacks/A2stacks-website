@@ -83,4 +83,4 @@ This repository contains the ultra-luxurious, high-performance web experience fo
 
 - **Email**: [a2stacksofficial@gmail.com](mailto:a2stacksofficial@gmail.com)
 - **Phone / WhatsApp**: [+91 79789 91323](https://wa.me/917978991323)
-- **Studio Hub**: Balaramprasad, Angul, Odisha, India – 759128
+- **Operational Hubs**: Angul, Odisha · Bharatpur, Bhubaneswar, Odisha

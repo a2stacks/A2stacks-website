@@ -1855,8 +1855,8 @@ Senior Engineers: Asutosh Sahu & Ananta Kishore Swain`;
       ]
     },
     {
-      keywords: ['contact', 'email', 'phone', 'whatsapp', 'call', 'address', 'location', 'office', 'where are you', 'odisha', 'angul'],
-      reply: "Direct engineering communication channels:\n\n• **Email**: a2stacksofficial@gmail.com\n• **Call / WhatsApp**: +91 79789 91323\n• **Studio Hub**: Balaramprasad, Angul, Odisha, India – 759128\n\nWe guarantee a direct engineering response within 12 business hours!",
+      keywords: ['contact', 'email', 'phone', 'whatsapp', 'call', 'address', 'location', 'office', 'where are you', 'odisha', 'angul', 'bhubaneswar', 'bharatpur'],
+      reply: "Direct engineering communication channels:\n\n• **Email**: a2stacksofficial@gmail.com\n• **Call / WhatsApp**: +91 79789 91323\n• **Operational Hubs**: Angul, Odisha · Bharatpur, Bhubaneswar, Odisha\n\nWe guarantee a direct engineering response within 12 business hours!",
       actions: [
         { label: 'Chat on WhatsApp 💬', action: 'whatsapp', isWa: true },
         { label: 'Fill Inquiry Form ✍️', action: 'scroll', value: '#contact' }
