@@ -67,7 +67,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="assets/style.css?v=3.5">
+  <link rel="stylesheet" href="assets/style.css?v=3.6">
 
   <!-- Instant Theme Resolution (Prevents FOUC & Respects OS System Preference) -->
   <script>
@@ -117,7 +117,7 @@
           "latitude": 20.8444,
           "longitude": 85.1511
         },
-        "founder": [
+        "member": [
           {
             "@type": "Person",
             "name": "Asutosh Sahu",
@@ -215,8 +215,8 @@
           {
             "@type": "ListItem",
             "position": 5,
-            "name": "Leadership",
-            "item": "https://a2stacks.com/#founders"
+            "name": "Engineers",
+            "item": "https://a2stacks.com/#engineers"
           },
           {
             "@type": "ListItem",
@@ -390,7 +390,7 @@
       <div class="announcement-message">
         <span>Available for Select Q1/Q2 Projects</span>
         <span class="announcement-sep">✦</span>
-        <span class="highlight-gold">Direct Founder Collaboration</span>
+        <span class="highlight-gold">Direct Senior Engineer Collaboration</span>
         <span class="announcement-sep">✦</span>
         <span>Odisha, India · Global Delivery</span>
       </div>
@@ -442,7 +442,7 @@
         <a href="#services" class="nav-item">Services</a>
         <a href="#work" class="nav-item">Portfolio</a>
         <a href="#process" class="nav-item">Blueprint</a>
-        <a href="#founders" class="nav-item">Leadership</a>
+        <a href="#engineers" class="nav-item">Engineers</a>
         <a href="#faq" class="nav-item">FAQ</a>
         <div class="nav-cta-group">
           <a class="nav-cta button-luxury-outline" href="#contact">
@@ -491,7 +491,7 @@
         <a href="#services" class="drawer-item"><span class="item-num">02</span> Capabilities</a>
         <a href="#work" class="drawer-item"><span class="item-num">03</span> Selected Work</a>
         <a href="#process" class="drawer-item"><span class="item-num">04</span> Blueprint</a>
-        <a href="#founders" class="drawer-item"><span class="item-num">05</span> Leadership</a>
+        <a href="#engineers" class="drawer-item"><span class="item-num">05</span> Engineers</a>
         <a href="#faq" class="drawer-item"><span class="item-num">06</span> Questions</a>
         <a href="#contact" class="drawer-item highlight"><span class="item-num">07</span> Start Project <span>↗</span></a>
       </div>
@@ -527,7 +527,7 @@
         <!-- Hero Text Column -->
         <div class="hero-content reveal">
           <div class="hero-eyebrow">
-            <span class="eyebrow-badge">FOUNDER-LED STUDIO</span>
+            <span class="eyebrow-badge">SENIOR ENGINEERING STUDIO</span>
             <span class="eyebrow-line"></span>
             <span class="eyebrow-caption">IDEAS, ENGINEERED FOR IMPACT</span>
           </div>
@@ -555,15 +555,15 @@
 
           <div class="hero-proof-strip">
             <div class="proof-avatars">
-              <span class="avatar-tag avatar-photo-tag" title="Asutosh Sahu (Co-Founder)">
+              <span class="avatar-tag avatar-photo-tag" title="Asutosh Sahu (Lead Software Architect)">
                 <img src="assets/photos/asutosh.png" alt="Asutosh Sahu" class="hero-avatar-img">
               </span>
-              <span class="avatar-tag avatar-photo-tag" title="Ananta Kishore Swain (Co-Founder)">
+              <span class="avatar-tag avatar-photo-tag" title="Ananta Kishore Swain (Lead AI &amp; Systems Engineer)">
                 <img src="assets/photos/Ananta.png" alt="Ananta Kishore Swain" class="hero-avatar-img">
               </span>
             </div>
             <div class="proof-text">
-              <strong>Direct Founder Engagement</strong>
+              <strong>Direct Senior Engineer Engagement</strong>
               <span>No account managers. Zero middlemen. Personal attention from blueprint to scale.</span>
             </div>
           </div>
@@ -662,8 +662,8 @@
                 <span class="stat-number" data-target="100">100</span>
                 <span class="stat-unit">%</span>
               </div>
-              <h4 class="stat-title">Founder-Led Engineering</h4>
-              <p class="stat-caption">Direct senior execution by Asutosh &amp; Ananta. Zero interns.</p>
+              <h4 class="stat-title">Direct Senior Engineering</h4>
+              <p class="stat-caption">Direct execution by Asutosh &amp; Ananta. Zero interns.</p>
             </div>
 
             <div class="stat-divider-needle"></div>
@@ -767,11 +767,11 @@
               craftsmanship.
             </h2>
             <p class="large-lead">
-              A2Stacks Technologies was forged on a straightforward conviction: exceptional software doesn’t come from bloated agencies and detached managers. It is born when founders and business leaders work directly with masters of code.
+              A2Stacks Technologies was forged on a straightforward conviction: exceptional software doesn’t come from bloated agencies and detached managers. It is born when ambitious business leaders work directly with senior architects and engineers.
             </p>
             <div class="intro-cta-wrap">
-              <a class="under-link" href="#founders">
-                <span>Meet Leadership</span>
+              <a class="under-link" href="#engineers">
+                <span>Meet the Engineers</span>
                 <span class="link-arrow">↗</span>
               </a>
             </div>
@@ -847,7 +847,7 @@
         </div>
 
         <!-- Service Cards Grid with Mouse Spotlight Effect -->
-        <div class="service-grid">
+        <div class="service-grid" id="servicesGrid">
           <!-- Service 1 -->
           <article class="service-card spotlight-card reveal" data-service="Website Design & Development">
             <div class="card-ambient-glow"></div>
@@ -886,7 +886,7 @@
             </div>
             <h3 class="service-title">Executive &amp; Creative Portfolios</h3>
             <p class="service-desc">
-              Distinctive, cinematic portfolio websites designed for founders, consultants, industry leaders, and artists demanding an unforgettable online footprint.
+              Distinctive, cinematic portfolio websites designed for executives, consultants, industry leaders, and creators demanding an unforgettable online footprint.
             </p>
             <div class="tag-cloud">
               <span class="tag">Personal Brand</span>
@@ -1063,6 +1063,14 @@
             </div>
           </article>
         </div>
+
+        <!-- Mobile Expand Services Toggle -->
+        <div class="mobile-expand-wrap">
+          <button type="button" class="mobile-expand-btn" id="expandServicesBtn" aria-expanded="false" aria-controls="servicesGrid">
+            <span class="expand-btn-text">View All 8 Capabilities</span>
+            <span class="expand-btn-icon">▾</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -1195,7 +1203,7 @@
           <!-- =================================================================
                TRACK 01: ENGINEERED BY ASUTOSH SAHU
                ================================================================= -->
-          <div class="founder-track-block">
+          <div class="founder-track-block engineer-track-block">
             <div class="track-header">
               <div class="track-header-left">
                 <span class="track-number">TRACK 01 // LEAD SOFTWARE ARCHITECT &amp; HEAD OF ENGINEERING DEPT</span>
@@ -1203,7 +1211,7 @@
                 <p class="track-focus">Institutional Web Platforms • Distributed Systems • Native Android Apps</p>
               </div>
               <div class="track-header-right">
-                <a href="https://github.com/Asutosh-0/" target="_blank" rel="noopener noreferrer" class="track-founder-pill" title="View Asutosh Sahu on GitHub">
+                <a href="https://github.com/Asutosh-0/" target="_blank" rel="noopener noreferrer" class="track-engineer-pill" title="View Asutosh Sahu on GitHub">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                   <span>GitHub: @Asutosh-0</span>
                   <span class="link-arrow">↗</span>
@@ -1265,7 +1273,7 @@
           <!-- =================================================================
                TRACK 02: ENGINEERED BY ANANTA KISHORE SWAIN
                ================================================================= -->
-          <div class="founder-track-block">
+          <div class="founder-track-block engineer-track-block">
             <div class="track-header">
               <div class="track-header-left">
                 <span class="track-number">TRACK 02 // LEAD AI &amp; SYSTEMS ENGINEER</span>
@@ -1273,7 +1281,7 @@
                 <p class="track-focus">Autonomous AI Workflows • Institutional ERP Systems • Machine Learning Research</p>
               </div>
               <div class="track-header-right">
-                <a href="https://ananta-portfolio-beta.vercel.app/" target="_blank" rel="noopener noreferrer" class="track-founder-pill highlight-gold" title="View Ananta's Applied AI &amp; Systems Architecture Portfolio">
+                <a href="https://ananta-portfolio-beta.vercel.app/" target="_blank" rel="noopener noreferrer" class="track-engineer-pill highlight-gold" title="View Ananta's Applied AI &amp; Systems Architecture Portfolio">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
                   <span>View Ananta's AI Portfolio</span>
                   <span class="link-arrow">↗</span>
@@ -1382,6 +1390,14 @@
             </div>
           </div>
 
+          <!-- Mobile Expand Projects Toggle -->
+          <div class="mobile-expand-wrap">
+            <button type="button" class="mobile-expand-btn" id="expandProjectsBtn" aria-expanded="false">
+              <span class="expand-btn-text">View Full Engineering Portfolio (6 Projects)</span>
+              <span class="expand-btn-icon">▾</span>
+            </button>
+          </div>
+
           <div class="pipeline-cta">
             <p>Want a mission-critical AI platform, custom enterprise ERP, or mobile app engineered for your business?</p>
             <div class="pipeline-cta-links">
@@ -1390,7 +1406,7 @@
                 <span class="link-arrow">↗</span>
               </a>
               <a href="#contact" class="under-link">
-                <span>Co-create with our founders</span>
+                <span>Collaborate directly with our engineers</span>
                 <span class="link-arrow">↗</span>
               </a>
             </div>
@@ -1608,19 +1624,20 @@
       </div>
     </section>
 
-    <!-- FOUNDERS & LEADERSHIP SECTION -->
-    <section class="section founders-section" id="founders">
+    <!-- TECHNICAL LEADERSHIP & SENIOR ENGINEERS SECTION -->
+    <section class="section founders-section engineers-section" id="engineers">
+      <span id="founders" style="position: absolute; top: -80px; visibility: hidden;" aria-hidden="true"></span>
       <div class="container">
         <div class="section-head-split reveal">
           <div>
             <div class="section-badge">05 // TECHNICAL LEADERSHIP</div>
             <h2 class="section-title">
-              Meet your<br>
-              <em class="luxury-gold-text">engineering leadership.</em>
+              Meet the<br>
+              <em class="luxury-gold-text">engineers building your software.</em>
             </h2>
           </div>
           <p class="section-subtitle">
-            Direct senior engineering partners. We personally architect the systems, write the code, and ensure your production success.
+            Senior software architects and systems engineers. We personally design the databases, write the code, and ensure production success—zero middle management.
           </p>
         </div>
 
@@ -1928,9 +1945,9 @@
             </div>
 
             <!-- Guarantee Strip -->
-            <div class="founder-pledge">
+            <div class="founder-pledge engineer-pledge">
               <span class="pledge-icon">✦</span>
-              <p><strong>12-Hour Guarantee:</strong> We review every submission personally and respond with an architectural perspective within 12 business hours.</p>
+              <p><strong>12-Hour Guarantee:</strong> Our senior engineers review every submission personally and respond with an architectural perspective within 12 business hours.</p>
             </div>
           </div>
 
@@ -2034,7 +2051,7 @@
                     <svg id="submitBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                   </button>
 
-                  <button type="button" class="button button-whatsapp" id="whatsappSubmitBtn">
+                  <button type="button" class="button button-whatsapp" id="whatsappSubmitBtn" formnovalidate title="Chat directly with engineers on WhatsApp (no form required)">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
                     <span>Instant WhatsApp</span>
                   </button>
@@ -2051,6 +2068,18 @@
       </div>
     </section>
   </main>
+
+  <!-- Floating Mobile Quick-Action Dock (Direct WhatsApp & Instant Contact) -->
+  <aside class="mobile-quick-dock" id="mobileQuickDock" aria-label="Mobile Quick Actions">
+    <a href="https://wa.me/917978991323?text=Hello%20a2stacks%20technologies,%20I%20would%20like%20to%20discuss%20a%20project%20with%20your%20engineers." target="_blank" rel="noopener" class="mobile-dock-btn mobile-dock-wa">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      <span>Instant WhatsApp</span>
+    </a>
+    <a href="#contact" class="mobile-dock-btn mobile-dock-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span>Start Project</span>
+    </a>
+  </aside>
 
   <!-- MASTER FOOTER -->
   <footer class="footer">
@@ -2097,7 +2126,7 @@
         <a href="#services">Our Capabilities</a>
         <a href="#work">Case Studies</a>
         <a href="#process">Blueprint</a>
-        <a href="#founders">Leadership</a>
+        <a href="#engineers">Engineers</a>
         <a href="#faq">FAQ</a>
       </div>
 
@@ -2262,7 +2291,7 @@
         <button type="button" class="chat-chip" data-chip="cadlab">🚀 CADLAB Case Study</button>
         <button type="button" class="chat-chip" data-chip="timelines">⏱ Timelines &amp; Delivery</button>
         <button type="button" class="chat-chip" data-chip="pricing">💰 How Pricing Works</button>
-        <button type="button" class="chat-chip" data-chip="founders">👤 Engineering Leadership</button>
+        <button type="button" class="chat-chip" data-chip="founders">👤 Senior Engineers</button>
         <button type="button" class="chat-chip" data-chip="ai">🤖 AI &amp; Chatbot Agents</button>
         <button type="button" class="chat-chip" data-chip="whatsapp">💬 Chat on WhatsApp</button>
       </div>
@@ -2270,7 +2299,7 @@
 
     <!-- Chatbot Input Form -->
     <form class="chatbot-input-bar" id="chatForm">
-      <input type="text" id="chatInput" placeholder="Ask about services, pricing, CADLAB, leadership..." autocomplete="off" required>
+      <input type="text" id="chatInput" placeholder="Ask about services, pricing, CADLAB, engineers..." autocomplete="off" required>
       <button type="submit" class="chat-send-btn" id="chatSendBtn" aria-label="Send query">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
@@ -2281,6 +2310,6 @@
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
   <!-- Application Script -->
-  <script src="assets/script.js?v=3.5"></script>
+  <script src="assets/script.js?v=3.6"></script>
 </body>
 </html>

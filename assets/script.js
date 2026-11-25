@@ -117,7 +117,7 @@
     const statusMessages = [
       { at: 0, text: 'INITIALIZING_STUDIO_SYSTEMS' },
       { at: 32, text: 'CALIBRATING_LUXURY_ENGINES' },
-      { at: 68, text: 'SYNCHRONIZING_FOUNDER_CORE' },
+      { at: 68, text: 'SYNCHRONIZING_ENGINEERING_CORE' },
       { at: 94, text: 'SYSTEM_READY // WELCOME' }
     ];
 
@@ -284,8 +284,15 @@
       }
     }
 
-    let animationFrameId;
+    let animationFrameId = null;
+    let isRunning = false;
+
     function render() {
+      if (window.innerWidth < 768) {
+        ctx.clearRect(0, 0, width, height);
+        isRunning = false;
+        return;
+      }
       ctx.clearRect(0, 0, width, height);
       for (let i = 0; i < particles.length; i++) {
         particles[i].update();
@@ -294,11 +301,29 @@
       connectParticles();
       animationFrameId = requestAnimationFrame(render);
     }
-    render();
+
+    function checkAnimationState() {
+      if (window.innerWidth >= 768) {
+        if (!isRunning) {
+          isRunning = true;
+          render();
+        }
+      } else {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+        ctx.clearRect(0, 0, width, height);
+        isRunning = false;
+      }
+    }
+
+    checkAnimationState();
 
     window.addEventListener('resize', () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
+      checkAnimationState();
     });
 
     window.addEventListener('mousemove', (e) => {
@@ -444,7 +469,7 @@
     metrics: [
       { ln: '01', html: '<span class="code-comment">// Real-Time Studio Performance Telemetry</span>' },
       { ln: '02', html: '{' },
-      { ln: '03', html: '  <span class="code-keyword">"founders_engagement"</span>: <span class="code-str">"100% Senior Engineers"</span>,' },
+      { ln: '03', html: '  <span class="code-keyword">"senior_engineer_engagement"</span>: <span class="code-str">"100% Direct Access"</span>,' },
       { ln: '04', html: '  <span class="code-keyword">"uptime_reliability"</span>: <span class="code-str">"99.98% SLA"</span>,' },
       { ln: '05', html: '  <span class="code-keyword">"lighthouse_score"</span>: { <span class="code-keyword">"performance"</span>: <span class="code-str">100</span>, <span class="code-keyword">"seo"</span>: <span class="code-str">100</span> },' },
       { ln: '06', html: '  <span class="code-keyword">"encryption"</span>: <span class="code-str">"AES-256-GCM / Zero Lock-in"</span>' },
@@ -505,10 +530,10 @@
   });
 
   /* ==========================================================================
-     06. 3D Tilt Card Physics (Hero Console, Founder Cards)
+     06. 3D Tilt Card Physics (Hero Console, Engineering Cards)
      ========================================================================== */
   const tiltCards = document.querySelectorAll('[data-tilt]');
-  if (window.matchMedia('(pointer: fine)').matches) {
+  if (window.matchMedia('(pointer: fine)').matches && window.innerWidth >= 768) {
     tiltCards.forEach((card) => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -534,7 +559,7 @@
      07. Spotlight Mouse Glow Tracking for Cards
      ========================================================================== */
   const spotlightCards = document.querySelectorAll('.spotlight-card');
-  if (window.matchMedia('(pointer: fine)').matches) {
+  if (window.matchMedia('(pointer: fine)').matches && window.innerWidth >= 768) {
     document.addEventListener('mousemove', (e) => {
       spotlightCards.forEach((card) => {
         const rect = card.getBoundingClientRect();
@@ -967,28 +992,35 @@
   }
 
   function sendViaWhatsApp(data) {
-    if (!data.name) {
-      showToast('Please enter your name / organization first.', '⚠');
-      document.getElementById('userName')?.focus();
-      return;
-    }
+    let waText;
+    const hasData = data && (
+      (data.name && data.name.trim() !== '') || 
+      (data.message && data.message.trim() !== '') || 
+      (data.service && data.service !== 'General Project Consultation') ||
+      (data.phone && data.phone.trim() !== '')
+    );
 
-    const waText = 
-`*PROJECT INQUIRY — A2Stacks Technologies*
+    if (hasData) {
+      waText = 
+`*PROJECT INQUIRY — a2stacks technologies*
 -----------------------------------------
-*Client / Org:* ${data.name}
+*Client / Org:* ${data.name || 'Anonymous Client'}
 *Email:* ${data.email || 'N/A'}
 *Phone:* ${data.phone || 'N/A'}
 *Service Required:* ${data.service}
 *Estimated Scope / Budget:* ${data.budget}
 *Project Overview:*
-${data.message || 'Ready to discuss requirements'}
+${data.message || 'Ready to discuss requirements with your engineers.'}
 -----------------------------------------
-_Transmitted via a2stacks.com_`;
+_Transmitted via a2stacks technologies_`;
+      showToast('Opening WhatsApp with your project brief...', '💬');
+    } else {
+      waText = "Hello a2stacks technologies, I would like to discuss a project with your engineers.";
+      showToast('Connecting directly to engineers on WhatsApp...', '💬');
+    }
 
     const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`;
     window.open(waUrl, '_blank', 'noopener,noreferrer');
-    showToast('Opening WhatsApp with structured inquiry brief...', '💬');
   }
 
   function sendViaEmail(data) {
@@ -1012,8 +1044,8 @@ PROJECT REQUIREMENTS & VISION:
 ${data.message}
 
 -----------------------------------------
-Transmitted to A2Stacks Technologies
-Leadership: Asutosh Sahu & Ananta Kishore Swain`;
+Transmitted to a2stacks technologies
+Senior Engineers: Asutosh Sahu & Ananta Kishore Swain`;
 
     // Copy brief to clipboard so data is preserved even if mail client isn't configured
     try {
@@ -1048,10 +1080,10 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     }
   });
 
-  // Dedicated Direct WhatsApp Button
-  whatsappSubmitBtn?.addEventListener('click', function () {
+  // Dedicated Direct WhatsApp Button (works instantly without requiring form fields)
+  whatsappSubmitBtn?.addEventListener('click', function (e) {
+    e.preventDefault();
     const data = getFormData();
-    if (!data) return;
     sendViaWhatsApp(data);
   });
 
@@ -1098,6 +1130,41 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
       behavior: 'smooth'
     });
   });
+
+  /* ==========================================================================
+     17c. Mobile Collapsible Accordions (Capabilities & Engineering Pipeline)
+     ========================================================================== */
+  const expandServicesBtn = document.getElementById('expandServicesBtn');
+  const servicesGrid = document.getElementById('servicesGrid');
+  if (expandServicesBtn && servicesGrid) {
+    expandServicesBtn.addEventListener('click', function () {
+      const isExpanded = servicesGrid.classList.toggle('is-expanded');
+      const textSpan = expandServicesBtn.querySelector('span:first-child');
+      const arrowSpan = expandServicesBtn.querySelector('.arrow') || expandServicesBtn.querySelector('span:last-child');
+      if (textSpan) {
+        textSpan.textContent = isExpanded ? 'Show Fewer Capabilities' : 'View All 8 Capabilities';
+      }
+      if (arrowSpan) {
+        arrowSpan.textContent = isExpanded ? '▴' : '▾';
+      }
+    });
+  }
+
+  const expandProjectsBtn = document.getElementById('expandProjectsBtn');
+  const pipelineSection = document.querySelector('.pipeline-section');
+  if (expandProjectsBtn && pipelineSection) {
+    expandProjectsBtn.addEventListener('click', function () {
+      const isExpanded = pipelineSection.classList.toggle('is-expanded');
+      const textSpan = expandProjectsBtn.querySelector('span:first-child');
+      const arrowSpan = expandProjectsBtn.querySelector('.arrow') || expandProjectsBtn.querySelector('span:last-child');
+      if (textSpan) {
+        textSpan.textContent = isExpanded ? 'Collapse Projects' : 'View Full Engineering Portfolio (6 Projects)';
+      }
+      if (arrowSpan) {
+        arrowSpan.textContent = isExpanded ? '▴' : '▾';
+      }
+    });
+  }
 
   /* ==========================================================================
      18. Active Navigation Highlighting on Scroll (ScrollSpy) & Mascot Advisor
@@ -1186,7 +1253,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     },
     about: {
       emoji: '💡',
-      text: "Wondering what makes our independent studio different? Ask me why direct founder access matters!"
+      text: "Wondering what makes our independent studio different? Ask me why direct engineer access matters!"
     },
     services: {
       emoji: '⚡',
@@ -1202,7 +1269,11 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     },
     founders: {
       emoji: '🤝',
-      text: "Meet Asutosh Sahu & Ananta Kishore Swain! Ask me about their technical backgrounds and roles."
+      text: "Meet Asutosh Sahu & Ananta Kishore Swain! Ask me about their technical backgrounds and engineering roles."
+    },
+    engineers: {
+      emoji: '🤝',
+      text: "Meet Asutosh Sahu & Ananta Kishore Swain! Ask me about their technical backgrounds and engineering roles."
     },
     faq: {
       emoji: '❓',
@@ -1293,9 +1364,9 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
       };
     }
 
-    if (sec === 'founders') {
+    if (sec === 'founders' || sec === 'engineers') {
       return {
-        text: `🤝 Meet our engineering leadership: **Asutosh Sahu** (Lead Software Architect) and **Ananta Kishore Swain** (Lead AI & Systems Engineer).\n\nWhen you partner with A2Stacks Technologies, you collaborate directly with senior technical leads from day one — zero junior account managers.\n\nReady to discuss your technical architecture?`,
+        text: `🤝 Meet our senior engineers: **Asutosh Sahu** (Lead Software Architect & Head of Engineering) and **Ananta Kishore Swain** (Lead AI & Systems Engineer).\n\nWhen you partner with A2Stacks Technologies, you collaborate directly with senior technical leads from day one — zero junior account managers.\n\nReady to discuss your technical architecture?`,
         actions: [
           { label: 'Book Kickoff Call 💬', action: 'whatsapp', isWa: true },
           { label: '✍️ Submit Project Brief', action: 'scroll', value: '#contact' },
@@ -1343,7 +1414,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
       actions: [
         { label: '⚡ Explore Capabilities', action: 'scroll', value: '#services' },
         { label: '🚀 CADLAB Case Study', action: 'scroll', value: '#work' },
-        { label: '👤 Leadership', action: 'scroll', value: '#founders' },
+        { label: '👤 Senior Engineers', action: 'scroll', value: '#engineers' },
         { label: '💬 Chat on WhatsApp', action: 'whatsapp', isWa: true }
       ]
     };
@@ -1690,7 +1761,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
       actions: [
         { label: '⚡ Our Capabilities', action: 'scroll', value: '#services' },
         { label: '🚀 CADLAB Case Study', action: 'cadlab' },
-        { label: '👤 Leadership', action: 'scroll', value: '#founders' },
+        { label: '👤 Senior Engineers', action: 'scroll', value: '#engineers' },
         { label: '💬 Chat on WhatsApp', action: 'whatsapp', isWa: true }
       ]
     },
@@ -1724,12 +1795,12 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
       reply: "We build state-of-the-art AI into everyday business tools:\n\n• **Domain-Trained Chatbots** (just like me!) that handle support & qualify leads 24/7\n• **Autonomous Workflow Agents** for document processing & data entry\n• **AI Analytics Dashboards** powered by Gemini and custom vector databases\n• **WhatsApp AI Bots** integrated into your company database",
       actions: [
         { label: 'Select AI Integration ✍️', action: 'service', value: 'AI chatbot' },
-        { label: 'Chat with Leadership 💬', action: 'whatsapp', isWa: true }
+        { label: 'Chat with Engineers 💬', action: 'whatsapp', isWa: true }
       ]
     },
     {
       keywords: ['portfolio', 'personal website', 'creator', 'executive', 'personal brand'],
-      reply: "We design commanding, cinematic portfolio platforms for consultants, founders, and creative directors looking to establish undeniable industry authority with fluid typography and interactive 3D physics.",
+      reply: "We design commanding, cinematic portfolio platforms for consultants, executives, and creative directors looking to establish undeniable industry authority with fluid typography and interactive 3D physics.",
       actions: [
         { label: 'Select Portfolio Service ✍️', action: 'service', value: 'Portfolio website' }
       ]
@@ -1751,9 +1822,9 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     },
     {
       keywords: ['founder', 'founders', 'asutosh', 'ananta', 'sahu', 'swain', 'team', 'who made', 'leadership', 'engineers', 'profiles', 'github', 'linkedin'],
-      reply: "**A2Stacks Technologies** is led directly by senior engineering leadership:\n\n• **Asutosh Sahu** (Lead Software Architect & Head of Engineering Dept)\n  Specialties: Full-Stack Architecture · Distributed Systems · Enterprise Software\n  Projects: Creative Techno College Web & Creative Student Zone Android App\n  Profiles: [LinkedIn](https://www.linkedin.com/in/asutosh-sahu-b3219426b/) · [GitHub](https://github.com/Asutosh-0/)\n\n• **Ananta Kishore Swain** (Lead AI & Systems Engineer)\n  Specialties: Autonomous AI Workflows · Systems Integration · Cloud Infrastructure\n  Projects: NyayaVakil AI Co-Pilot, CTC Staff Management System (SMS), AI Academic Success Tracker & NeuroTraceAI\n  Profiles: [LinkedIn](https://www.linkedin.com/in/ananta-kishore-swain-6282472bb/) · [GitHub](https://github.com/ananta12-d) · [Portfolio](https://ananta-portfolio-beta.vercel.app/)\n\nYou collaborate directly with senior technical leads from day one — zero junior account managers.",
+      reply: "**A2Stacks Technologies** is driven directly by senior software architects and engineers:\n\n• **Asutosh Sahu** (Lead Software Architect & Head of Engineering Dept)\n  Specialties: Full-Stack Architecture · Distributed Systems · Enterprise Software\n  Projects: Creative Techno College Web & Creative Student Zone Android App\n  Profiles: [LinkedIn](https://www.linkedin.com/in/asutosh-sahu-b3219426b/) · [GitHub](https://github.com/Asutosh-0/)\n\n• **Ananta Kishore Swain** (Lead AI & Systems Engineer)\n  Specialties: Autonomous AI Workflows · Systems Integration · Cloud Infrastructure\n  Projects: NyayaVakil AI Co-Pilot, CTC Staff Management System (SMS), AI Academic Success Tracker & NeuroTraceAI\n  Profiles: [LinkedIn](https://www.linkedin.com/in/ananta-kishore-swain-6282472bb/) · [GitHub](https://github.com/ananta12-d) · [Portfolio](https://ananta-portfolio-beta.vercel.app/)\n\nYou collaborate directly with senior technical leads from day one — zero junior account managers.",
       actions: [
-        { label: 'Meet Leadership ↗', action: 'scroll', value: '#founders' },
+        { label: 'Meet Senior Engineers ↗', action: 'scroll', value: '#engineers' },
         { label: "Ananta's LinkedIn ↗", action: 'link', value: 'https://www.linkedin.com/in/ananta-kishore-swain-6282472bb/' },
         { label: "Ananta's GitHub ↗", action: 'link', value: 'https://github.com/ananta12-d' },
         { label: "Asutosh's LinkedIn ↗", action: 'link', value: 'https://www.linkedin.com/in/asutosh-sahu-b3219426b/' },
@@ -1785,7 +1856,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     },
     {
       keywords: ['contact', 'email', 'phone', 'whatsapp', 'call', 'address', 'location', 'office', 'where are you', 'odisha', 'angul'],
-      reply: "Direct engineering communication channels:\n\n• **Email**: a2stacksofficial@gmail.com\n• **Call / WhatsApp**: +91 79789 91323\n• **Studio Hub**: Balaramprasad, Angul, Odisha, India – 759128\n\nWe guarantee a direct leadership response within 12 business hours!",
+      reply: "Direct engineering communication channels:\n\n• **Email**: a2stacksofficial@gmail.com\n• **Call / WhatsApp**: +91 79789 91323\n• **Studio Hub**: Balaramprasad, Angul, Odisha, India – 759128\n\nWe guarantee a direct engineering response within 12 business hours!",
       actions: [
         { label: 'Chat on WhatsApp 💬', action: 'whatsapp', isWa: true },
         { label: 'Fill Inquiry Form ✍️', action: 'scroll', value: '#contact' }
@@ -1793,7 +1864,7 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
     },
     {
       keywords: ['hire', 'start', 'book', 'collaborate', 'work with you', 'proposal', 'kickoff', 'meet'],
-      reply: "We are currently accepting select commissions for this quarter! Let's get started:\n\n1. Use our Project Initiation Suite on this page to share your scope\n2. Message leadership directly on WhatsApp at **+91 79789 91323** for an immediate response.",
+      reply: "We are currently accepting select commissions for this quarter! Let's get started:\n\n1. Use our Project Initiation Suite on this page to share your scope\n2. Message our engineers directly on WhatsApp at **+91 79789 91323** for an immediate response.",
       actions: [
         { label: 'Go to Project Form ✍️', action: 'scroll', value: '#contact' },
         { label: 'WhatsApp Instant Brief 💬', action: 'whatsapp', isWa: true }
@@ -1900,9 +1971,10 @@ Leadership: Asutosh Sahu & Ananta Kishore Swain`;
         cadlab: "Tell me about your CADLAB project",
         timelines: "What is your project timeline?",
         pricing: "How does your pricing work?",
-        founders: "Who is the engineering leadership?",
+        founders: "Who are the senior engineers?",
+        engineers: "Who are the senior engineers?",
         ai: "Can you build AI agents for our business?",
-        whatsapp: "I want to chat with engineering leadership on WhatsApp"
+        whatsapp: "I want to chat with your engineers on WhatsApp"
       };
 
       const query = chipQueries[chipKey] || this.textContent.trim();
